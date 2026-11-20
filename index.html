@@ -1,0 +1,910 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Floristy - Katalog &amp; Informasi UMKM Floristy</title>
+  <meta name="description" content="Katalog Produk dan Informasi UMKM Floristy Yogyakarta">
+  <meta name="keywords" content="florist, buket bunga, yogyakarta, upnvy">
+
+  <!-- Favicons -->
+  <link href="assets/img/logo f.webp" rel="icon">
+  <link href="assets/img/logo f.webp" rel="apple-touch-icon">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Main CSS File -->
+  <link href="assets/css/main.css" rel="stylesheet">
+
+  <!-- Custom Pink Theme, Fix Hero Blank, Vertical Category Images, Map & Responsive Mobile -->
+  <style>
+    :root {
+      --accent-color: #d63384;
+    }
+    html, body {
+      overflow-x: hidden;
+      width: 100%;
+    }
+    section#hero.hero {
+      background: linear-gradient(135deg, #f8a5c2 0%, #f78fb3 50%, #cf6a87 100%) !important;
+      min-height: 90vh !important;
+      display: flex !important;
+      align-items: center !important;
+      position: relative !important;
+      padding-top: 100px;
+      padding-bottom: 60px;
+    }
+    section#hero.hero::before {
+      background: rgba(89, 25, 56, 0.35) !important;
+    }
+    section#hero.hero img {
+      display: none !important;
+    }
+    .text-pink {
+      color: #d63384 !important;
+    }
+    .bg-pink {
+      background-color: #d63384 !important;
+    }
+    .bg-pink-soft {
+      background-color: #fff0f6 !important;
+    }
+    .btn-pink {
+      background-color: #d63384 !important;
+      border-color: #d63384 !important;
+      color: #ffffff !important;
+    }
+    .btn-pink:hover {
+      background-color: #b02a6b !important;
+      border-color: #b02a6b !important;
+    }
+    section#call-to-action.call-to-action {
+      background: linear-gradient(135deg, #d63384 0%, #9b225d 100%) !important;
+    }
+
+    /* Logo FLORISTY tidak bisa diklik */
+    .header .logo {
+      pointer-events: none;
+      user-select: none;
+      cursor: default;
+    }
+
+    /* Efek hover menu & indikator bagian yang sedang dibuka */
+    .navmenu a {
+      position: relative;
+      transition: color 0.25s ease;
+    }
+    .navmenu a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -6px;
+      width: 100%;
+      height: 2px;
+      background-color: #d63384;
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.25s ease;
+    }
+
+    /* Saat diarahkan kursor atau bagian sedang dibuka */
+    .navmenu a:hover,
+    .navmenu a:focus,
+    .navmenu a.is-current {
+      color: #ff85c0 !important;
+    }
+    .navmenu a:hover::after,
+    .navmenu a:focus::after,
+    .navmenu a.is-current::after {
+      transform: scaleX(1);
+    }
+
+    /* Gambar kategori dibuat lebih besar & vertikal */
+    #featured-services .service-item .img {
+      width: 100%;
+      height: 440px;
+      overflow: hidden;
+    }
+    #featured-services .service-item .img img {
+      width: 100% !important;
+      height: 100% !important;
+      object-fit: cover !important;
+      object-position: center !important;
+      display: block;
+    }
+
+    /* Tampilan peta lokasi UMKM yang bisa diklik */
+    .floristy-map-box {
+      display: block;
+      position: relative;
+      width: 100%;
+      height: 340px;
+      border-radius: 16px;
+      overflow: hidden;
+      background: #e9f2ec;
+      border: 2px solid #f3c6dc;
+      text-decoration: none;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+    .floristy-map-box:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 24px rgba(214, 51, 132, 0.16) !important;
+    }
+    .map-block {
+      position: absolute;
+      background: #d8eadf;
+      border-radius: 8px;
+    }
+    .map-block-1 { top: 22px; left: 24px; width: 34%; height: 28%; }
+    .map-block-2 { top: 26px; right: 24px; width: 46%; height: 24%; background: #e3f0e8; }
+    .map-block-3 { bottom: 26px; left: 24px; width: 42%; height: 34%; background: #e3f0e8; }
+    .map-block-4 { bottom: 24px; right: 26px; width: 36%; height: 36%; }
+
+    .map-road-h {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 52%;
+      height: 14px;
+      background: #ffffff;
+      border-top: 2px solid #f7c773;
+      border-bottom: 2px solid #f7c773;
+      transform: rotate(-4deg);
+    }
+    .map-road-v {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 48%;
+      width: 12px;
+      background: #ffffff;
+      border-left: 1px solid #cbd5e1;
+      border-right: 1px solid #cbd5e1;
+      transform: rotate(6deg);
+    }
+    .map-road-label {
+      position: absolute;
+      top: calc(52% - 26px);
+      left: 16px;
+      background: rgba(255, 255, 255, 0.92);
+      color: #334155;
+      font-size: 11px;
+      font-weight: 600;
+      padding: 2px 8px;
+      border-radius: 6px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+    }
+    .map-landmark-chip {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      background: #ffffff;
+      color: #1e293b;
+      font-size: 11px;
+      font-weight: 600;
+      padding: 5px 10px;
+      border-radius: 999px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    .map-pin-center {
+      position: absolute;
+      top: 46%;
+      left: 52%;
+      transform: translate(-50%, -65%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      z-index: 3;
+    }
+    .map-pin-bubble {
+      background: #d63384;
+      color: #ffffff;
+      font-weight: 700;
+      font-size: 13px;
+      padding: 6px 14px;
+      border-radius: 999px;
+      box-shadow: 0 6px 16px rgba(214, 51, 132, 0.4);
+      white-space: nowrap;
+      margin-bottom: 6px;
+    }
+    .map-pin-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: #d63384;
+      color: #ffffff;
+      border: 3px solid #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.22);
+    }
+    .map-footer-cta {
+      position: absolute;
+      left: 14px;
+      right: 14px;
+      bottom: 14px;
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 12px;
+      padding: 10px 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      z-index: 3;
+    }
+
+    /* Ukuran gambar katalog produk tetap seragam */
+    #portfolio .portfolio-content img {
+      width: 100% !important;
+      height: 260px !important;
+      object-fit: cover !important;
+      display: block;
+    }
+
+    /* =========================================================
+       PENYESUAIAN TAMPILAN MOBILE / HP (Layar <= 768px)
+       ========================================================= */
+    @media (max-width: 768px) {
+      .header .logo h1 {
+        font-size: 22px !important;
+      }
+
+      /* Menu mobile agar tetap terlihat jelas saat dibuka */
+      .mobile-nav-active .navmenu a::after {
+        display: none;
+      }
+      .mobile-nav-active .navmenu a.is-current {
+        color: #d63384 !important;
+        font-weight: 700;
+      }
+
+      /* Hero section menyesuaikan layar HP */
+      section#hero.hero {
+        min-height: auto !important;
+        padding-top: 110px !important;
+        padding-bottom: 50px !important;
+      }
+      section#hero.hero h2 {
+        font-size: 26px !important;
+        line-height: 1.3;
+      }
+      section#hero.hero p {
+        font-size: 14px !important;
+      }
+      section#hero.hero .badge {
+        font-size: 11px !important;
+        white-space: normal;
+      }
+      section#hero.hero .btn-get-started {
+        width: 100%;
+        max-width: 260px;
+        text-align: center;
+      }
+
+      /* Section title lebih proporsional di HP */
+      .section-title h2 {
+        font-size: 24px !important;
+      }
+      .section-title p {
+        font-size: 14px !important;
+      }
+      #about .section-title p {
+        text-align: justify !important;
+        line-height: 1.65;
+      }
+
+      /* Gambar kategori lebih pas di layar HP */
+      #featured-services .service-item .img {
+        height: 290px !important;
+      }
+
+      /* Peta lokasi menyesuaikan layar sempit HP */
+      .floristy-map-box {
+        height: 280px !important;
+      }
+      .map-road-label {
+        font-size: 10px;
+        left: 10px;
+        top: calc(52% - 24px);
+      }
+      .map-landmark-chip {
+        font-size: 10px;
+        top: 10px;
+        right: 10px;
+        padding: 4px 8px;
+      }
+      .map-footer-cta {
+        left: 10px;
+        right: 10px;
+        bottom: 10px;
+        padding: 8px 10px;
+      }
+      .map-footer-cta span.small {
+        font-size: 11px !important;
+      }
+
+      /* Katalog produk di HP: info selalu terbaca tanpa harus hover */
+      #portfolio .portfolio-content img {
+        height: 230px !important;
+      }
+      #portfolio .portfolio-info {
+        opacity: 1 !important;
+        background: linear-gradient(to top, rgba(30, 10, 20, 0.88), rgba(30, 10, 20, 0.25)) !important;
+      }
+      #portfolio .portfolio-info h4 {
+        font-size: 15px !important;
+      }
+      #portfolio .portfolio-info p {
+        font-size: 12px !important;
+      }
+
+      /* CTA WhatsApp di HP */
+      #call-to-action h3 {
+        font-size: 22px !important;
+      }
+      #call-to-action .cta-btn {
+        font-size: 14px !important;
+        padding: 10px 20px !important;
+      }
+    }
+  </style>
+</head>
+
+<body class="index-page">
+
+  <header id="header" class="header d-flex align-items-center fixed-top">
+    <div class="container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
+
+      <div class="logo d-flex align-items-center">
+        <h1 class="sitename mb-0">FLORISTY</h1>
+      </div>
+
+      <nav id="navmenu" class="navmenu">
+        <ul>
+          <li><a href="#hero">Beranda</a></li>
+          <li><a href="#about">Tentang Kami</a></li>
+          <li><a href="#featured-services">Kategori</a></li>
+          <li><a href="#services">Lokasi Maps</a></li>
+          <li><a href="#testimonials">Ulasan</a></li>
+          <li><a href="#portfolio">Katalog Produk</a></li>
+          <li><a href="#contact">Kontak</a></li>
+        </ul>
+        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+      </nav>
+
+    </div>
+  </header>
+
+  <main class="main">
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero section dark-background">
+
+      <img src="assets/img/hero-bg.jpg" alt="" data-aos="fade-in">
+
+      <div class="container text-center" data-aos="fade-up" data-aos-delay="100">
+        <div class="row justify-content-center">
+          <div class="col-lg-9">
+            <span class="badge bg-white text-pink px-3 py-2 rounded-pill mb-3 fw-bold shadow-sm">UMKM Floristy Yogyakarta</span>
+            <h2>Selamat Datang di FLORISTY</h2>
+            <p class="mt-3 mb-4">Markas besar para peracik buket kece di Yogyakarta. Setiap rangkaian lahir dengan penuh cinta, kreativitas, dan keindahan untuk setiap momen istimewamu.</p>
+            <div class="d-flex flex-wrap justify-content-center gap-2 mb-4">
+              <span class="badge bg-light text-dark px-3 py-2 rounded-pill"><i class="bi bi-gift-fill text-pink me-1"></i> Gratis Kartu Ucapan</span>
+              <span class="badge bg-light text-dark px-3 py-2 rounded-pill"><i class="bi bi-palette text-pink me-1"></i> Custom Desain Buket</span>
+              <span class="badge bg-light text-dark px-3 py-2 rounded-pill"><i class="bi bi-heart-fill text-pink me-1"></i> Setiap Bunga Istimewa</span>
+            </div>
+            <div class="d-flex justify-content-center gap-3 flex-wrap">
+              <a href="#about" class="btn-get-started">Tentang Kami</a>
+              <a href="https://www.instagram.com/floristy__id?igsh=MTB4OTgwcnpoNGphMA==" target="_blank" rel="noopener noreferrer" class="btn-get-started" style="background: rgba(255,255,255,0.2); border-color: #fff;">
+                <i class="fab fa-instagram me-1"></i> @floristy_id
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </section><!-- /Hero Section -->
+
+    <!-- About Section -->
+    <section id="about" class="about section">
+
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <h2>Tentang Floristy</h2>
+        <p>Floristy merupakan sebuah Usaha Mikro, Kecil, dan Menengah (UMKM) yang bergerak dalam industri kerajinan, khususnya pada pembuatan dan penjualan berbagai jenis buket. Usaha ini didirikan pada Tahun 2022 oleh Mas Mujab dan pada awalnya dijalankan dari rumah dengan sistem pemasaran secara daring melalui media sosial. Seiring meningkatnya minat pelanggan serta bertambahnya variasi produk yang ditawarkan, Floristy kemudian membuka toko offline pertamanya di sekitar Kampus Sanata Dharma. Tahun 2023, usaha ini dipindahkan ke lokasi baru yang lebih strategis dan dekat dengan kawasan mahasiswa, sehingga mempermudah jangkauan pemasaran serta meningkatkan jumlah pelanggan yang datang secara langsung.</p>
+      </div><!-- End Section Title -->
+
+      <div class="container">
+
+        <div class="row gy-5">
+
+          <div class="content col-xl-5 d-flex flex-column" data-aos="fade-up" data-aos-delay="100">
+            <h3>Setiap Bunga, Setiap Momen, Istimewa</h3>
+            <p style="text-align: justify;">
+              Kami menyediakan berbagai macam buket bunga segar, bunga kering, bunga artificial, buket uang, buket boneka, kerajinan tangan, kreasi gift, piala, mahar, selempang wisuda custom, hingga bunga papan mulai dari 15K. Kamu bisa langsung datang ke toko untuk memilih atau custom buket kesukaanmu.
+            </p>
+            <a href="#portfolio" class="about-btn align-self-center align-self-xl-start"><span>Lihat Katalog</span> <i class="bi bi-chevron-right"></i></a>
+          </div>
+
+          <div class="col-xl-7" data-aos="fade-up" data-aos-delay="200">
+            <div class="row gy-4">
+
+              <div class="col-md-6 icon-box position-relative">
+                <i class="bi bi-flower1 text-pink"></i>
+                <h4><a href="#featured-services" class="stretched-link">Bahan Bunga Berkualitas</a></h4>
+                <p>Menggunakan bunga segar pilihan agar hasil rangkaian tahan lama, segar, dan indah.</p>
+              </div><!-- Icon-Box -->
+
+              <div class="col-md-6 icon-box position-relative">
+                <i class="bi bi-palette text-pink"></i>
+                <h4><a href="#portfolio" class="stretched-link">Kustomisasi Desain</a></h4>
+                <p>Setiap rangkaian bisa disesuaikan dengan tema acara dan keinginan pelanggan.</p>
+              </div><!-- Icon-Box -->
+
+              <div class="col-md-6 icon-box position-relative">
+                <i class="bi bi-geo-alt-fill text-pink"></i>
+                <h4><a href="#services" class="stretched-link">Lokasi Super Strategis</a></h4>
+                <p>Depan Kopma UPN, Jl. Pintu Selatan UPN, Jl. Seturan Raya, Ngropoh, Condongcatur, Yogyakarta.</p>
+              </div><!-- Icon-Box -->
+
+              <div class="col-md-6 icon-box position-relative">
+                <i class="bi bi-speedometer text-pink"></i>
+                <h4><a href="#contact" class="stretched-link">Pelayanan Cepat</a></h4>
+                <p>Kami siap memberikan pelayanan terbaik dan respons cepat untuk seluruh pelanggan Floristy.</p>
+              </div><!-- Icon-Box -->
+
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section><!-- /About Section -->
+
+    <!-- Featured Services Section (Kategori Bahan Baku & Kegiatan) -->
+    <section id="featured-services" class="featured-services section">
+
+      <div class="container section-title" data-aos="fade-up">
+        <h2>Kategori &amp; Aktivitas Toko</h2>
+        <p>Pilihan bunga segar serta kegiatan kreatif merangkai bunga bersama komunitas di Floristy</p>
+      </div>
+
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+        <div class="row gy-4 justify-content-center">
+
+          <div class="col-lg-6 col-md-6" data-aos="zoom-in" data-aos-delay="200">
+            <div class="service-item position-relative">
+              <div class="img">
+                <img src="assets/img/bunga.jpeg" class="img-fluid" alt="Fresh Cut Flowers">
+              </div>
+              <div class="details">
+                <a href="#portfolio" class="stretched-link">
+                  <h3>Fresh Cut Flowers (Bunga Segar)</h3>
+                </a>
+                <p>Mawar, Lily, dan Baby's Breath pilihan yang terjaga kesegarannya untuk mempercantik setiap rangkaian buket.</p>
+              </div>
+            </div>
+          </div><!-- End Service Item -->
+
+          <div class="col-lg-6 col-md-6" data-aos="zoom-in" data-aos-delay="400">
+            <div class="service-item position-relative">
+              <div class="img">
+                <img src="assets/img/girl terapi.jpeg" class="img-fluid" alt="Pelatihan Merangkai Bunga">
+              </div>
+              <div class="details">
+                <a href="#contact" class="stretched-link">
+                  <h3>Pelatihan &amp; Workshop Floristry</h3>
+                </a>
+                <p>Kegiatan pelatihan merangkai bunga dan workshop dekorasi acara bersama komunitas pecinta bunga di Yogyakarta.</p>
+              </div>
+            </div>
+          </div><!-- End Service Item -->
+
+        </div>
+
+      </div>
+
+    </section><!-- /Featured Services Section -->
+
+    <!-- Services Section (Lokasi Maps UMKM Floristy) -->
+    <section id="services" class="services section bg-pink-soft">
+
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <h2>Lokasi Maps UMKM</h2>
+        <p>Tekan area peta di bawah ini untuk langsung membuka lokasi FLORISTY I di Google Maps</p>
+      </div><!-- End Section Title -->
+
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+        <div class="row g-4 align-items-center">
+
+          <div class="col-lg-7">
+            <a href="https://maps.app.goo.gl/h2d3LqKwkA5efR4n8" target="_blank" rel="noopener noreferrer" class="floristy-map-box shadow-sm" title="Klik peta untuk membuka Google Maps FLORISTY I">
+              <div class="map-block map-block-1"></div>
+              <div class="map-block map-block-2"></div>
+              <div class="map-block map-block-3"></div>
+              <div class="map-block map-block-4"></div>
+              <div class="map-road-h"></div>
+              <div class="map-road-v"></div>
+              <div class="map-road-label">Jl. Seturan Raya &bull; Condongcatur</div>
+              <div class="map-landmark-chip"><i class="bi bi-mortarboard-fill text-pink me-1"></i> Kopma UPN / UPNVY</div>
+
+              <div class="map-pin-center">
+                <div class="map-pin-bubble">FLORISTY I</div>
+                <div class="map-pin-icon"><i class="bi bi-geo-alt-fill"></i></div>
+              </div>
+
+              <div class="map-footer-cta">
+                <span class="small fw-semibold text-dark">
+                  <i class="bi bi-cursor-fill text-pink me-1"></i> Klik peta untuk buka Google Maps
+                </span>
+                <span class="badge bg-pink text-white px-3 py-2 rounded-pill">Buka Maps <i class="bi bi-box-arrow-up-right ms-1"></i></span>
+              </div>
+            </a>
+          </div>
+
+          <div class="col-lg-5">
+            <div class="bg-white p-4 rounded-4 shadow-sm">
+              <span class="badge bg-pink-soft text-pink px-3 py-2 rounded-pill mb-2 fw-semibold">
+                <i class="bi bi-geo-alt-fill me-1"></i> FLORISTY I
+              </span>
+              <h3 class="h4 fw-bold mb-2">Condongcatur, Sleman, Yogyakarta</h3>
+              <p class="small text-muted mb-3">
+                Depan Kopma UPN, Jl. Pintu Selatan UPN Jl. Seturan Raya, Ngropoh, Condongcatur, Kec. Depok, Kabupaten Sleman, DI Yogyakarta 55281.
+              </p>
+              <ul class="list-unstyled small mb-4">
+                <li class="mb-2"><i class="bi bi-clock text-pink me-2"></i><strong>Senin – Sabtu:</strong> 08.00 – 22.00 WIB</li>
+                <li class="mb-2"><i class="bi bi-clock text-pink me-2"></i><strong>Minggu:</strong> 09.00 – 22.00 WIB</li>
+                <li class="mb-2"><i class="bi bi-whatsapp text-pink me-2"></i><strong>WhatsApp:</strong> 0858-7881-5624</li>
+              </ul>
+              <a href="https://maps.app.goo.gl/h2d3LqKwkA5efR4n8" target="_blank" rel="noopener noreferrer" class="btn btn-pink w-100">
+                <i class="bi bi-map-fill me-1"></i> Buka di Google Maps
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </section><!-- /Services Section -->
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="testimonials section py-4">
+
+      <div class="container section-title pb-3" data-aos="fade-up">
+        <h2>Testimoni Pelanggan</h2>
+        <p>Ulasan pelanggan setia Floristy</p>
+      </div>
+
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+        <div class="row g-3 justify-content-center">
+
+          <div class="col-lg-4 col-md-6">
+            <div class="bg-white p-3 rounded-3 shadow-sm border" style="min-height: auto !important; height: auto !important;">
+              <div class="text-warning small mb-2">
+                <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+              </div>
+              <p class="small mb-3" style="min-height: auto !important;">
+                "INI FLORIST FAV AKUU!!! first time beli yg 20rb ku pikir bakal kecil gitu ternyata enggakkk. bener bener murahh mau nangiss. fresh semua jugakkkk, kakak kakaknya juga baikkk ramah semuaa dichat banyak nanya banyak request tetep diturutinn. bakal selaluu repeat orderr sihh."
+              </p>
+              <div class="d-flex align-items-center gap-2">
+                <img src="assets/img/testimonials/testimonials-3.jpg" class="rounded-circle" alt="Karin" style="width: 40px; height: 40px; object-fit: cover;">
+                <div>
+                  <div class="fw-bold small">Karin</div>
+                  <div class="text-muted" style="font-size: 12px;">Pelanggan</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6">
+            <div class="bg-white p-3 rounded-3 shadow-sm border" style="min-height: auto !important; height: auto !important;">
+              <div class="text-warning small mb-2">
+                <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+              </div>
+              <p class="small mb-3" style="min-height: auto !important;">
+                "udah 3x beli di sinii, murah-murah untuk kantong mahasiswa. katalog digitalnya lengkap bangeet jadi gak bingung buat nyari pilihan by chat, di tempatnya juga disediakan katalog jadi kalau lupa tinggal tunjuk aja mau yang mana, ada yang per tangkai lucu banget dan dapet di harga murah juga tapi kualitasnya tetep bagus, adminnya fast respon dan ramah (boleh tanya-tanya dulu). yang jaga juga ramah, bahkan type yang menghapal pelanggan jadi seneng kalau beli apalagi kalau udah pesen duluan by chat! :3 bisa tambah kartu ucapan juga langsung ditulis sendiri di tempat dan sudah disediakan. best bangett deh pokoknya floristnya, semoga bisa tetep dipercaya, thank u⭐⭐⭐❤️."
+              </p>
+              <div class="d-flex align-items-center gap-2">
+                <img src="assets/img/testimonials/testimonials-2.jpg" class="rounded-circle" alt="Amelia R" style="width: 40px; height: 40px; object-fit: cover;">
+                <div>
+                  <div class="fw-bold small">Amelia R</div>
+                  <div class="text-muted" style="font-size: 12px;">Mahasiswi UPNVY</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6">
+            <div class="bg-white p-3 rounded-3 shadow-sm border" style="min-height: auto !important; height: auto !important;">
+              <div class="text-warning small mb-2">
+                <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+              </div>
+              <p class="small mb-3" style="min-height: auto !important;">
+                "SUKAAAK BANGET SM FLORISTNYAA! brp kali beli disinii puas bangett, wrapping nya cantik dan rapihh. super affordable, masnya jg ramahh mantap pol."
+              </p>
+              <div class="d-flex align-items-center gap-2">
+                <img src="assets/img/testimonials/testimonials-1.jpg" class="rounded-circle" alt="Raka Pratama" style="width: 40px; height: 40px; object-fit: cover;">
+                <div>
+                  <div class="fw-bold small">Raka Pratama</div>
+                  <div class="text-muted" style="font-size: 12px;">Pelanggan Acara</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </section><!-- /Testimonials Section -->
+
+    <!-- Call To Action Section -->
+    <section id="call-to-action" class="call-to-action section dark-background">
+
+      <div class="container">
+        <div class="row justify-content-center" data-aos="zoom-in" data-aos-delay="100">
+          <div class="col-xl-10">
+            <div class="text-center">
+              <h3>Hubungi Kami untuk Pemesanan</h3>
+              <p>Ingin pesan buket bunga segar, buket uang, selempang wisuda, atau papan bunga ucapan? Konsultasikan langsung desain dan kebutuhanmu dengan tim Floristy melalui WhatsApp.</p>
+              <a class="cta-btn" href="https://wa.me/6285878815624?text=Halo%20Floristy,%20saya%20tertarik%20untuk%20memesan%20bunga." target="_blank" rel="noopener noreferrer">
+                <i class="fab fa-whatsapp me-2"></i> Chat WhatsApp (0858-7881-5624)
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </section><!-- /Call To Action Section -->
+
+    <!-- Portfolio Section (Katalog Produk Floristy) -->
+    <section id="portfolio" class="portfolio section">
+
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <h2>Katalog Produk Floristy</h2>
+        <p>Keindahan alami, desain penuh makna, dan sentuhan personal di setiap rangkaian (Diskon 10% Koleksi Pilihan)</p>
+      </div><!-- End Section Title -->
+
+      <div class="container">
+
+        <div class="isotope-layout" data-default-filter="*" data-layout="masonry" data-sort="original-order">
+
+          <div class="row gy-4 isotope-container" data-aos="fade-up" data-aos-delay="200">
+
+            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-app">
+              <div class="portfolio-content h-100">
+                <img src="assets/img/portfolio/mawar putih.jpg" class="img-fluid" alt="Mawar putih">
+                <div class="portfolio-info">
+                  <h4>Mawar putih — Rp 95.000/Buket</h4>
+                  <p>Rangkaian mawar segar pilihan dengan wrapping cellophane elegan</p>
+                  <a href="assets/img/portfolio/mawar putih.jpg" title="Mawar putih - Rp 95.000" data-gallery="portfolio-gallery-app" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                </div>
+              </div>
+            </div><!-- End Portfolio Item -->
+
+            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-app">
+              <div class="portfolio-content h-100">
+                <img src="assets/img/portfolio/mawar dan krisan.webp" class="img-fluid" alt="Mawar dan krisan">
+                <div class="portfolio-info">
+                  <h4>Mawar dan krisan — Rp 275.000/Buket</h4>
+                  <p>Kombinasi bunga Lily &amp; mawar pastel untuk momen wisuda</p>
+                  <a href="assets/img/portfolio/mawar dan krisan.webp" title="Mawar dan krisan - Rp 275.000" data-gallery="portfolio-gallery-app" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                </div>
+              </div>
+            </div><!-- End Portfolio Item -->
+
+            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-app">
+              <div class="portfolio-content h-100">
+                <img src="assets/img/portfolio/new rose pikok.webp" class="img-fluid" alt="Bunga rose pikok">
+                <div class="portfolio-info">
+                  <h4>Bunga rose pikok — Rp 40.000/Buket</h4>
+                  <p>Koleksi premium Floristy dengan ukuran besar &amp; kartu ucapan</p>
+                  <a href="assets/img/portfolio/new rose pikok.webp" title="Bunga rose pikok - Rp 40.000" data-gallery="portfolio-gallery-app" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                </div>
+              </div>
+            </div><!-- End Portfolio Item -->
+
+            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-product">
+              <div class="portfolio-content h-100">
+                <img src="assets/img/portfolio/mawar merah.webp" class="img-fluid" alt="Full mawar merah">
+                <div class="portfolio-info">
+                  <h4>Full mawar merah — Rp 275.000/Buket</h4>
+                  <p>Cocok untuk ucapan selamat pernikahan, wisuda, &amp; grand opening</p>
+                  <a href="assets/img/portfolio/mawar merah.webp" title="Full mawar merah - Rp 275.000" data-gallery="portfolio-gallery-product" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                </div>
+              </div>
+            </div><!-- End Portfolio Item -->
+
+            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-product">
+              <div class="portfolio-content h-100">
+                <img src="assets/img/portfolio/buket sack.webp" class="img-fluid" alt="Bucket Snack">
+                <div class="portfolio-info">
+                  <h4>Bucket Snack — Rp 85.000/Buket</h4>
+                  <p>Cocok untuk reward tipis-tipis</p>
+                  <a href="assets/img/portfolio/buket sack.webp" title="Bucket snack - Rp 85.000" data-gallery="portfolio-gallery-product" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                </div>
+              </div>
+            </div><!-- End Portfolio Item -->
+
+            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-product">
+              <div class="portfolio-content h-100">
+                <img src="assets/img/portfolio/buket kering.webp" class="img-fluid" alt="Buket Custom">
+                <div class="portfolio-info">
+                  <h4>Custom — Rp 150.000/Buket</h4>
+                  <p>Buket bunga kering, artificial, snack, boneka, &amp; buket uang</p>
+                  <a href="assets/img/portfolio/buket kering.webp" title="Bucket Custom Mulai 15K" data-gallery="portfolio-gallery-product" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                </div>
+              </div>
+            </div><!-- End Portfolio Item -->
+
+            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-branding">
+              <div class="portfolio-content h-100">
+                <img src="assets/img/portfolio/pink round.webp" class="img-fluid" alt="Pink round">
+                <div class="portfolio-info">
+                  <h4>Pink round — Mulai Rp 275.000/Buket</h4>
+                  <p>Mawar full pink around</p>
+                  <a href="assets/img/portfolio/pink round.webp" title="Mawar full pink around" data-gallery="portfolio-gallery-branding" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                </div>
+              </div>
+            </div><!-- End Portfolio Item -->
+
+            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-branding">
+              <div class="portfolio-content h-100">
+                <img src="assets/img/portfolio/tempat lilin doa.webp" class="img-fluid" alt="Tempat Lilin Doa">
+                <div class="portfolio-info">
+                  <h4>Tempat Lilin Doa — Rp 125.000</h4>
+                  <p>Custom warna, bentuk, serta berbagai pilihan</p>
+                  <a href="assets/img/portfolio/tempat lilin doa.webp" title="Tempat Lilin Doa" data-gallery="portfolio-gallery-branding" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                </div>
+              </div>
+            </div><!-- End Portfolio Item -->
+
+            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-books">
+              <div class="portfolio-content h-100">
+                <img src="assets/img/portfolio/valentine.png" class="img-fluid" alt="Acara Valentine's">
+                <div class="portfolio-info">
+                  <h4>Acara Valentine's</h4>
+                  <p>Kesan baru setiap tahun</p>
+                  <a href="assets/img/portfolio/valentine.png" title="Kesan baru setiap tahun" data-gallery="portfolio-gallery-book" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                </div>
+              </div>
+            </div><!-- End Portfolio Item -->
+
+          </div><!-- End Portfolio Container -->
+
+        </div>
+
+      </div>
+
+    </section><!-- /Portfolio Section -->
+
+  </main>
+
+  <footer id="footer" class="footer dark-background">
+    <div class="container" id="contact">
+      <div class="row gy-4 text-start mb-4">
+        <div class="col-lg-4 col-md-6">
+          <h4 class="fw-bold text-white">FLORISTY</h4>
+          <p class="small mb-1">Depan Kopma UPN, Jl. Pintu Selatan UPN</p>
+          <p class="small mb-2">Jl. Seturan Raya, Ngropoh, Condongcatur, Yogyakarta</p>
+          <p class="small mb-1"><strong>WhatsApp:</strong> 0858-7881-5624</p>
+          <p class="small mb-0"><strong>Instagram:</strong> @floristy_id</p>
+        </div>
+        <div class="col-lg-4 col-md-6">
+          <h5 class="fw-bold text-white">Layanan &amp; Produk</h5>
+          <ul class="list-unstyled small">
+            <li>• Rangkaian Bunga Segar, Kering &amp; Artificial</li>
+            <li>• Buket Wisuda, Buket Uang, Boneka &amp; Snack</li>
+            <li>• Papan Bunga Ucapan &amp; Instalasi Floral</li>
+            <li>• Selempang Wisuda Custom, Piala &amp; Mahar</li>
+          </ul>
+        </div>
+        <div class="col-lg-4 col-md-12">
+          <h5 class="fw-bold text-white">Jam Operasional</h5>
+          <ul class="list-unstyled small">
+            <li>• Senin – Sabtu : 08.00 – 22.00 WIB</li>
+            <li>• Minggu : 09.00 – 22.00 WIB</li>
+            <li>• Pengiriman 24 Jam (Opsional sesuai pesanan)</li>
+          </ul>
+        </div>
+      </div>
+      <div class="copyright text-center pt-3 border-top border-secondary">
+        <p>© <span>2026</span> <strong class="px-1 sitename">FLORISTY</strong> <span>— UMKM Florist Yogyakarta. All Rights Reserved.</span></p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scroll Top -->
+  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Preloader -->
+  <div id="preloader"></div>
+
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+
+  <!-- Main JS File -->
+  <script src="assets/js/main.js"></script>
+
+  <script>
+    window.addEventListener("load", function () {
+      const container = document.querySelector(".isotope-container");
+      if (container && typeof Isotope !== "undefined") {
+        const iso = Isotope.data(container) || new Isotope(container, {
+          itemSelector: ".isotope-item",
+          layoutMode: "masonry"
+        });
+        iso.layout();
+      }
+    });
+
+    // Menandai menu yang sesuai bagian yang sedang dibuka
+    document.addEventListener("DOMContentLoaded", function () {
+      const navLinks = Array.from(document.querySelectorAll('#navmenu a[href^="#"]'));
+      const trackedIds = ["hero", "about", "featured-services", "services", "testimonials", "portfolio", "contact"];
+      const sections = trackedIds
+        .map(id => document.getElementById(id))
+        .filter(Boolean);
+
+      function updateActiveSectionNav() {
+        let currentId = "";
+
+        if (window.scrollY < 120) {
+          currentId = "hero";
+        } else {
+          const triggerY = window.innerHeight * 0.35;
+          for (const sec of sections) {
+            const rect = sec.getBoundingClientRect();
+            if (rect.top <= triggerY && rect.bottom >= 100) {
+              currentId = sec.id;
+            }
+          }
+
+          const contactEl = document.getElementById("contact");
+          if (contactEl) {
+            const contactRect = contactEl.getBoundingClientRect();
+            if (contactRect.top <= window.innerHeight * 0.85) {
+              currentId = "contact";
+            }
+          }
+        }
+
+        navLinks.forEach(link => {
+          const targetId = link.getAttribute("href").slice(1);
+          link.classList.remove("active");
+          link.classList.toggle("is-current", currentId !== "" && targetId === currentId);
+        });
+      }
+
+      window.addEventListener("scroll", updateActiveSectionNav, { passive: true });
+      window.addEventListener("resize", updateActiveSectionNav, { passive: true });
+      updateActiveSectionNav();
+    });
+  </script>
+
+</body>
+
+</html>
